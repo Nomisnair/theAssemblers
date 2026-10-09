@@ -56,14 +56,7 @@ fun OnboardingScreen(
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
-            text = "🧟",
-            style = MaterialTheme.typography.displayLarge,
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "ZombieThumb",
+            text = "Snapout",
             style = MaterialTheme.typography.headlineLarge,
             color = OnSurfaceHigh,
             fontWeight = FontWeight.Bold,
@@ -82,7 +75,7 @@ fun OnboardingScreen(
             icon = Icons.Filled.Shield,
             iconColor = PaleGreen,
             title = "100% Private",
-            description = "ZombieThumb only measures how you scroll — speed, distance, tilt. " +
+            description = "Snapout only measures how you scroll — speed, distance, tilt. " +
                     "It NEVER reads your screen, messages, or any content. " +
                     "No internet. No cloud. Everything stays on your device.",
         )
@@ -94,7 +87,7 @@ fun OnboardingScreen(
             icon = Icons.Filled.Accessibility,
             iconColor = MutedTeal,
             title = "Accessibility Service",
-            description = "ZombieThumb needs accessibility access to detect scroll speed and tap patterns " +
+            description = "Snapout needs accessibility access to detect scroll speed and tap patterns " +
                     "in social media apps. It cannot read text (canRetrieveWindowContent is disabled).",
         ) {
             OutlinedButton(
@@ -114,7 +107,7 @@ fun OnboardingScreen(
             icon = Icons.Filled.Notifications,
             iconColor = WarmAmber,
             title = "Notifications",
-            description = "ZombieThumb sends gentle break reminders when it detects doomscrolling. " +
+            description = "Snapout sends gentle break reminders when it detects doomscrolling. " +
                     "On Android 13+, please grant notification permission.",
         )
 
@@ -127,7 +120,7 @@ fun OnboardingScreen(
             shape = RoundedCornerShape(12.dp),
         ) {
             Text(
-                text = "⚠️ Sideloaded APK? On Android 13+, go to Settings → Apps → ZombieThumb → " +
+                text = "⚠️ Sideloaded APK? On Android 13+, go to Settings → Apps → Snapout → " +
                         "⋮ menu → \"Allow restricted settings\" to enable the accessibility service.",
                 style = MaterialTheme.typography.bodySmall,
                 color = WarmAmber,

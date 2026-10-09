@@ -1,10 +1,10 @@
-# ZombieThumb 🧟👍
+# Snapout 🧘‍♀️📱
 
-**On-device anti-doomscrolling companion** — detects zombie-scroll patterns using interaction physics, never reads your content.
+**On-device anti-doomscrolling companion** — detects doomscroll patterns using interaction physics, never reads your content.
 
 ## What it does
 
-ZombieThumb monitors **how** you scroll, not **what** you scroll. When it detects a doomscrolling pattern, it sends a compassionate notification suggesting a break — with the exact meters of feed you've scrolled and how long you've been at it.
+Snapout monitors **how** you scroll, not **what** you scroll. When it detects a doomscrolling pattern, it sends a compassionate notification suggesting a break — with the exact meters of feed you've scrolled and how long you've been at it.
 
 ### The 4 Biomarkers
 
@@ -19,7 +19,7 @@ Combined into a **Trance Score (0-100%)** via EMA-smoothed weighted formula.
 
 ## Privacy
 
-ZombieThumb is **100% on-device** with **zero network access**:
+Snapout is **100% on-device** with **zero network access**:
 
 - ✅ Scroll velocity, cadence, distance
 - ✅ Tap frequency, device tilt, ambient light
@@ -52,9 +52,9 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 ### Enable Permissions
 
-1. **Accessibility Service**: Settings → Accessibility → ZombieThumb → Enable
-   - On Android 13+ sideloaded APKs: Settings → Apps → ZombieThumb → ⋮ → "Allow restricted settings" first
-2. **Notifications**: Grant when prompted (Android 13+), or Settings → Apps → ZombieThumb → Notifications
+1. **Accessibility Service**: Settings → Accessibility → Snapout → Enable
+   - On Android 13+ sideloaded APKs: Settings → Apps → Snapout → ⋮ → "Allow restricted settings" first
+2. **Notifications**: Grant when prompted (Android 13+), or Settings → Apps → Snapout → Notifications
 
 ### Install the Lightweight AI Model (Optional)
 
@@ -64,8 +64,9 @@ To use a lightweight model like Falcon 1B (~700MB) instead of the heavy Gemma mo
 
 ```bash
 # Download falcon-rw-1b-int4.bin (or gemma-2b-it-gpu-int4.bin)
-# Place it in the app's files directory:
-adb push falcon-rw-1b-int4.bin /data/data/com.zombiethumb/files/
+# Push it to the app's external data directory (ADB allows this without root):
+# (Note: the internal Android package name remains com.zombiethumb for the build)
+adb push gemma-2b-it-gpu-int4.bin /sdcard/Android/data/com.zombiethumb/files/gemma-2b-it-gpu-int4.bin
 ```
 
 If the model file is missing or inference takes >1.5 seconds, the app uses template messages.
@@ -87,7 +88,7 @@ Enable **Demo Mode** in Settings for:
 - ~25 rapid flicks triggers a notification in ~18 seconds
 
 ### Debug Panel
-Long-press the "ZombieThumb" title on the Home screen to open the Debug Panel showing live:
+Long-press the "Snapout" title on the Home screen to open the Debug Panel showing live:
 - Flick interval, interaction ratio, tilt, lux
 - Feed mileage, trance score
 - All biomarker scores updating in real time
@@ -96,7 +97,7 @@ Long-press the "ZombieThumb" title on the Home screen to open the Debug Panel sh
 ## Architecture
 
 ```
-com.zombiethumb
+com.snapout (internal: com.zombiethumb)
 ├── data/               # Sensors, accessibility, Room DB, DataStore
 ├── domain/             # TranceEngine, biomarkers (pure Kotlin, unit-tested)
 ├── service/            # MonitoringService, NotificationHelper, Gemma

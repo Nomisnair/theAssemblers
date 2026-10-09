@@ -31,7 +31,7 @@ class SettingsDataStore(private val context: Context) {
 
     // Defaults
     companion object {
-        const val DEFAULT_THRESHOLD = 0.70f
+        const val DEFAULT_THRESHOLD = 0.50f
         const val DEFAULT_COOLDOWN_MINUTES = 10
         const val DEFAULT_MILESTONE_METERS = 50
         const val DEFAULT_QUIET_START = 23  // 11 PM

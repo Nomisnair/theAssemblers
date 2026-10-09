@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ZombieThumb</string>
-    <string name="accessibility_service_description">ZombieThumb monitors scroll speed and tap frequency in social media apps to detect doomscrolling patterns. It NEVER reads screen content, text, messages, or any personal information. Only scroll physics (speed, distance, direction) are measured.</string>
+    <string name="app_name">Snapout</string>
+    <string name="accessibility_service_description">Snapout monitors scroll speed and tap frequency in social media apps to detect doomscrolling patterns. It NEVER reads screen content, text, messages, or any personal information. Only scroll physics (speed, distance, direction) are measured.</string>
     <string name="channel_monitoring">Monitoring</string>
     <string name="channel_break">Take a break</string>
-    <string name="notification_monitoring_title">ZombieThumb is monitoring</string>
+    <string name="notification_monitoring_title">Snapout is monitoring</string>
     <string name="notification_monitoring_text">Watching for doomscroll patterns</string>
 </resources>

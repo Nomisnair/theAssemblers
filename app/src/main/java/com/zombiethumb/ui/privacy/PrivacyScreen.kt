@@ -56,7 +56,7 @@ fun PrivacyScreen() {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "ZombieThumb is designed with privacy as a core principle. " +
+            text = "Snapout is designed with privacy as a core principle. " +
                     "All data stays on your device. There is no internet connection.",
             style = MaterialTheme.typography.bodyMedium,
             color = OnSurfaceMed,

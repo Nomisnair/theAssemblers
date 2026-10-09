@@ -22,7 +22,7 @@ class ZombieThumbApp : Application() {
             getString(R.string.channel_monitoring),
             NotificationManager.IMPORTANCE_LOW
         ).apply {
-            description = "Persistent notification while ZombieThumb is monitoring"
+            description = "Persistent notification while Snapout is monitoring"
             setShowBadge(false)
         }
 

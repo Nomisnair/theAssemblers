@@ -70,7 +70,7 @@ fun HomeScreen(
     ) {
         // Title — long-press for debug panel
         Text(
-            text = "ZombieThumb",
+            text = "Snapout",
             style = MaterialTheme.typography.headlineMedium,
             color = OnSurfaceHigh,
             modifier = Modifier.combinedClickable(

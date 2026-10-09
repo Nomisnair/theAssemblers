@@ -48,14 +48,20 @@ class GemmaMessageGenerator(private val context: Context) {
         // Support multiple lightweight models (Falcon 1B is ~700MB, much lighter than Gemma 2B)
         val possibleNames = listOf("falcon-rw-1b-int4.bin", "gemma-2b-it-gpu-int4.bin")
         for (name in possibleNames) {
-            val possiblePaths = listOf(
-                File(context.filesDir, name),
-                File(context.getExternalFilesDir(null), name),
+            val possiblePaths = listOfNotNull(
+                context.filesDir?.let { File(it, name) },
+                context.getExternalFilesDir(null)?.let { File(it, name) },
+                File("/sdcard/Android/data/com.zombiethumb/files/", name),
+                File("/storage/emulated/0/Android/data/com.zombiethumb/files/", name),
                 File("/sdcard/Download/", name),
             )
             val found = possiblePaths.firstOrNull { it.exists() }?.absolutePath
-            if (found != null) return found
+            if (found != null) {
+                android.util.Log.d("SnapoutAI", "Found AI model at: $found")
+                return found
+            }
         }
+        android.util.Log.d("SnapoutAI", "No AI model found in any expected directory.")
         return null
     }
 
@@ -74,7 +80,9 @@ class GemmaMessageGenerator(private val context: Context) {
                 .invoke(null, context, options)
 
             modelReady = true
+            android.util.Log.d("SnapoutAI", "AI model loaded successfully!")
         } catch (e: Exception) {
+            android.util.Log.e("SnapoutAI", "Failed to load AI model: ${e.message}", e)
             modelReady = false
         }
     }
@@ -84,7 +92,7 @@ class GemmaMessageGenerator(private val context: Context) {
      */
     suspend fun generateMessage(result: TranceResult): String {
         if (modelReady && llmInference != null) {
-            val aiMessage = withTimeoutOrNull(1500L) {
+            val aiMessage = withTimeoutOrNull(1500L) { // Give the AI up to 1.5 seconds to respond
                 tryAiGeneration(result)
             }
             if (!aiMessage.isNullOrBlank()) {
@@ -125,7 +133,8 @@ class GemmaMessageGenerator(private val context: Context) {
                 response?.trim()?.take(200)
             }
         } catch (e: Exception) {
-            null
+            android.util.Log.e("SnapoutAI", "AI Generation Error: ${e.message}", e)
+            "AI Error: ${e.message} / ${e.cause?.message}"
         }
     }
 
@@ -171,7 +180,7 @@ class GemmaMessageGenerator(private val context: Context) {
             "You've scrolled {meters} meters of {app} in {duration} minutes. Time for a short break — your eyes will thank you! 🌿",
             "That's {meters} meters of feed in {duration} minutes on {app}. How about stretching your legs for a minute? 🚶",
             "Hey, you've been scrolling {app} for {duration} minutes ({meters}m of feed). A quick break might feel really good right now. ☀️",
-            "Zombie-scroll detected: {meters} meters in {duration} minutes on {app}. Your thumbs deserve a rest! 👍",
+            "Doomscroll detected: {meters} meters in {duration} minutes on {app}. Your thumbs deserve a rest! 👍",
             "{meters} meters of {app} in {duration} minutes — that's quite a journey! Time to look up from the screen. 🌤️",
         )
 
@@ -186,7 +195,7 @@ class GemmaMessageGenerator(private val context: Context) {
             "You've scrolled {meters} meters in the dark over the last {duration} minutes. Your brain is asking for rest, so put the phone down and sleep. 🌙💤",
             "Phone overhead in the dark, {meters}m of {app} in {duration} minutes. This is the classic bedtime scroll — your sleep is worth more. 😴",
             "Bedtime scroll detected: {meters} meters of {app} in {duration} minutes with nearly zero light. Your body is begging for sleep. 🛏️",
-            "{meters}m of feed in the dark for {duration} minutes. You're in the zombie-scroll zone — time to put the phone on the nightstand. 🧟💤",
+            "{meters}m of feed in the dark for {duration} minutes. You're in the doomscroll zone — time to put the phone on the nightstand. 📱💤",
         )
     }
 }

@@ -51,7 +51,7 @@ class NotificationHelper(private val context: Context) {
 
         val notification = NotificationCompat.Builder(context, ZombieThumbApp.CHANNEL_BREAK)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .setContentTitle("🧟 ZombieThumb")
+            .setContentTitle("🧘‍♀️ Snapout")
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
