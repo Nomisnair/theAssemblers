@@ -75,7 +75,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    // MediaPipe LLM Inference removed in favor of lightweight templates
+    // MediaPipe LLM Inference (Restored for lightweight models)
+    implementation(libs.mediapipe.genai)
 
     // Testing
     testImplementation(libs.junit)

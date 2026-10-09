@@ -56,7 +56,19 @@ adb install app/build/outputs/apk/debug/app-debug.apk
    - On Android 13+ sideloaded APKs: Settings → Apps → ZombieThumb → ⋮ → "Allow restricted settings" first
 2. **Notifications**: Grant when prompted (Android 13+), or Settings → Apps → ZombieThumb → Notifications
 
+### Install the Lightweight AI Model (Optional)
 
+The app supports lightweight on-device AI models (like Falcon 1B or Gemma 2B) to generate dynamic, compassionate messages. If you don't install a model, the app seamlessly falls back to handwritten templates (which take up zero space and work perfectly).
+
+To use a lightweight model like Falcon 1B (~700MB) instead of the heavy Gemma model:
+
+```bash
+# Download falcon-rw-1b-int4.bin (or gemma-2b-it-gpu-int4.bin)
+# Place it in the app's files directory:
+adb push falcon-rw-1b-int4.bin /data/data/com.zombiethumb/files/
+```
+
+If the model file is missing or inference takes >1.5 seconds, the app uses template messages.
 
 ## How to Demo
 
